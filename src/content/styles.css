@@ -1,0 +1,246 @@
+/* ── Floating Save Button ── */
+#nws-btn {
+  position: fixed !important;
+  z-index: 2147483647 !important;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 13px;
+  background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%);
+  color: #fff;
+  border-radius: 999px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow:
+    0 4px 20px rgba(99, 102, 241, 0.45),
+    0 0 0 1px rgba(255, 255, 255, 0.1);
+  transition:
+    box-shadow 0.2s,
+    background 0.2s;
+  user-select: none;
+  white-space: nowrap;
+  letter-spacing: 0.01em;
+  pointer-events: auto;
+}
+
+#nws-btn:hover {
+  background: linear-gradient(135deg, #312e81 0%, #4338ca 100%);
+  box-shadow:
+    0 6px 24px rgba(99, 102, 241, 0.6),
+    0 0 0 1px rgba(255, 255, 255, 0.15);
+}
+
+#nws-btn .nws-icon {
+  display: flex;
+  align-items: center;
+}
+
+#nws-btn.nws-loading {
+  opacity: 0.75;
+  cursor: wait;
+  animation: nws-pulse 1.2s ease infinite;
+}
+#nws-btn.nws-success {
+  background: linear-gradient(135deg, #065f46, #059669) !important;
+  box-shadow: 0 4px 16px rgba(5, 150, 105, 0.5) !important;
+}
+#nws-btn.nws-error {
+  background: linear-gradient(135deg, #7f1d1d, #b91c1c) !important;
+  box-shadow: 0 4px 16px rgba(185, 28, 28, 0.5) !important;
+}
+
+@keyframes nws-pulse {
+  0%,
+  100% {
+    opacity: 0.75;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
+/* ── Translation Tooltip ── */
+#nws-translate-tooltip {
+  position: fixed !important;
+  z-index: 2147483647 !important;
+  width: 340px;
+  max-width: 90vw;
+  background: linear-gradient(160deg, #13131f 0%, #1a1535 100%);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  border-radius: 14px;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(255, 255, 255, 0.05),
+    0 0 60px -10px rgba(99, 102, 241, 0.15);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #e2e8f0;
+  overflow: hidden;
+  pointer-events: auto;
+  opacity: 0;
+  transform: translate(-50%, 8px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+#nws-translate-tooltip.nws-tt--visible {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+/* Header */
+.nws-tt-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.nws-tt-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #818cf8;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+}
+
+.nws-tt-close {
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+  color: #6b7280;
+  font-size: 11px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  line-height: 1;
+  padding: 0;
+}
+
+.nws-tt-close:hover {
+  background: rgba(239, 68, 68, 0.15);
+  border-color: rgba(239, 68, 68, 0.3);
+  color: #fca5a5;
+}
+
+/* Body */
+.nws-tt-body {
+  padding: 12px 14px 14px;
+}
+
+/* Loading shimmer */
+.nws-tt-loading {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.nws-tt-shimmer {
+  height: 14px;
+  width: 100%;
+  border-radius: 6px;
+  background: linear-gradient(
+    90deg,
+    rgba(99, 102, 241, 0.08) 25%,
+    rgba(99, 102, 241, 0.18) 50%,
+    rgba(99, 102, 241, 0.08) 75%
+  );
+  background-size: 200% 100%;
+  animation: nws-shimmer 1.5s ease infinite;
+}
+
+.nws-tt-shimmer--short {
+  width: 65%;
+}
+
+@keyframes nws-shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Result text */
+.nws-tt-result {
+  font-size: 13.5px;
+  font-weight: 500;
+  line-height: 1.6;
+  color: #f1f5f9;
+  max-height: 180px;
+  overflow-y: auto;
+  word-break: break-word;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(99, 102, 241, 0.3) transparent;
+}
+
+.nws-tt-result::-webkit-scrollbar {
+  width: 4px;
+}
+
+.nws-tt-result::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.nws-tt-result::-webkit-scrollbar-thumb {
+  background: rgba(99, 102, 241, 0.3);
+  border-radius: 4px;
+}
+
+/* Error text */
+.nws-tt-error {
+  font-size: 12px;
+  font-weight: 500;
+  color: #fca5a5;
+  background: rgba(239, 68, 68, 0.08);
+  border: 1px solid rgba(239, 68, 68, 0.15);
+  border-radius: 8px;
+  padding: 8px 11px;
+  line-height: 1.5;
+}
+
+/* ── Toast Notifications ── */
+#nws-toasts {
+  position: fixed !important;
+  bottom: 20px;
+  right: 20px;
+  z-index: 2147483647 !important;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  pointer-events: none;
+}
+
+.nws-toast {
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: #fff;
+  opacity: 0;
+  transform: translateY(8px);
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+  max-width: 280px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+.nws-toast--show {
+  opacity: 1;
+  transform: translateY(0);
+}
+.nws-toast--success {
+  background: linear-gradient(135deg, #065f46, #059669);
+}
+.nws-toast--error {
+  background: linear-gradient(135deg, #7f1d1d, #b91c1c);
+}

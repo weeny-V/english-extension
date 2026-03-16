@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json.schemastore.org/chrome-manifest.json",
+  "chromium:manifest_version": 3,
+  "firefox:manifest_version": 2,
+  "version": "0.1.0",
+  "name": "Notion Word Saver",
+  "description": "Highlight any word on the web and save it to your Notion vocabulary database",
+  "icons": {
+    "16": "images/icon.png",
+    "32": "images/icon.png",
+    "48": "images/icon.png",
+    "64": "images/icon.png",
+    "128": "images/icon.png"
+  },
+  "background": {
+    "chromium:service_worker": "background.js",
+    "firefox:scripts": ["background.js"]
+  },
+  "action": {
+    "default_popup": "popup/index.html",
+    "default_icon": {
+      "16": "images/icon.png",
+      "48": "images/icon.png",
+      "128": "images/icon.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content/index.js"],
+      "css": ["content/styles.css"]
+    }
+  ],
+  "permissions": ["storage", "activeTab"],
+  "chromium:host_permissions": ["https://api.notion.com/*", "https://generativelanguage.googleapis.com/*"],
+  "firefox:permissions": ["storage", "activeTab", "https://api.notion.com/*", "https://generativelanguage.googleapis.com/*"],
+  "author": "Vladyslav Kruhlov"
+}
